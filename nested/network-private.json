@@ -7,30 +7,6 @@
                 "description": "Common Moodle values"
             },
             "type": "object"
-        },
-        "name": {
-            "type": "string"
-        },
-        "location": {
-            "type": "string"
-        },
-        "sku": {
-            "type": "string"
-        },
-        "tier": {
-            "type": "string"
-        },
-        "subnetId": {
-            "type": "string"
-        },
-        "privateIPAllocationMethod": {
-            "type": "string"
-        },
-        "privateIPAddress": {
-            "type": "string"
-        },
-        "privateIPAddressVersion": {
-            "type": "string"
         }
     },
     "resources": [
