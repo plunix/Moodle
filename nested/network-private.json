@@ -102,7 +102,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Static",
                             "subnet": {
-                                "id": "[variables('customVnetSubnetIdWeb')]"
+                                "id": "[variables('subnetIdWeb')]"
                             },
                             "privateIPAddress": "172.19.129.5",
                             "privateIPAddressVersion": "IPv4"
