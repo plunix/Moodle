@@ -984,9 +984,6 @@
                     "subnetIdWeb": {
                         "value": "[reference('networkTemplate').outputs.subnetIdWeb.value]"
                     },
-                    "ctlrPubIpId": {
-                        "value": "[reference('networkTemplate').outputs.ctlrPubIpId.value]"
-                    },
                     "vmSetupParamsObj": {
                         "value": "[reference('vmSetupParamsTemplate').outputs.vmSetupParamsObj.value]"
                     }
@@ -1030,10 +1027,6 @@
         "siteURL": {
             "type": "string",
             "value": "[variables('moodleCommon').siteURL]"
-        },
-        "controllerInstanceIP": {
-            "type": "string",
-            "value": "[reference('controllerTemplate').outputs.controllerIP.value]"
         },
         "databaseDNS": {
             "type": "string",
