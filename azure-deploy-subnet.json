@@ -1201,7 +1201,7 @@
                 "version": "latest"
             },
             "phpVersion": "[parameters('phpVersion')]",
-            "privateDnsZones": "[concat(variables('resourceprefix'),'.privatelink')]",
+            "privateDnsZones": "[concat('privateendpoint-',variables('resourceprefix'),'.privatelink')]",
             "policyName": "[concat('policy-',variables('resourceprefix'))]",
             "postgresVersion": "[parameters('postgresVersion')]",
             "redisCacheName": "[concat('redis-',variables('resourceprefix'))]",
