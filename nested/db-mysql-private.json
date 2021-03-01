@@ -8,9 +8,27 @@
             },
             "type": "object"
         },
-        "lbPrivateIp": {
+        "lbPubIp": {
             "metadata": {
-                "description": "Private IP address of the deployed load balancer"
+                "description": "Public IP address of the deployed load balancer"
+            },
+            "type": "string"
+        },
+        "lbOut001PubIp": {
+            "metadata": {
+                "description": "Outgoing Public IP address of the deployed load balancer"
+            },
+            "type": "string"
+        },
+        "lbOut002PubIp": {
+            "metadata": {
+                "description": "Outgoing Public IP address of the deployed load balancer"
+            },
+            "type": "string"
+        },
+        "ctlrPubIp": {
+            "metadata": {
+                "description": "Public IP address of the deployed controller VM"
             },
             "type": "string"
         }
