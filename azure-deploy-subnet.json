@@ -1201,6 +1201,7 @@
                 "version": "latest"
             },
             "phpVersion": "[parameters('phpVersion')]",
+            "privateDnsZones": "[concat(newGuid(),'.privatelink')]",
             "policyName": "[concat('policy-',variables('resourceprefix'))]",
             "postgresVersion": "[parameters('postgresVersion')]",
             "redisCacheName": "[concat('redis-',variables('resourceprefix'))]",
@@ -1224,6 +1225,9 @@
             "subnetGateway": "GatewaySubnet",
             "subnetGatewayPrefix": "[concat(variables('octets')[0], '.', variables('octets')[1], '.', string(add(int(variables('octets')[2]),4)))]",
             "subnetGatewayRange": "[concat(variables('octets')[0], '.', variables('octets')[1], '.', string(add(int(variables('octets')[2]),4)), '.0/24')]",
+            "subnetPrivateEndpoint": "[concat('privateendpoint-subnet-',variables('resourceprefix'))]",
+            "subnetPrivateEndpointPrefix": "172.19.129",
+            "subnetPrivateEndPointRange": "172.19.129.48/28",
             "subnetRedis": "[concat('redis-subnet-',variables('resourceprefix'))]",
             "subnetRedisPrefix": "172.19.129",
             "subnetRedisRange": "172.19.129.32/28",

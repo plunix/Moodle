@@ -76,13 +76,13 @@
                     }
                 },
                 "templateLink": {
-                    "uri": "[concat(parameters('moodleCommon').baseTemplateUrl,'network-subnets.json',parameters('moodleCommon').artifactsSasToken)]"
+                    "uri": "[concat(parameters('moodleCommon').baseTemplateUrl,'network-subnets-private.json',parameters('moodleCommon').artifactsSasToken)]"
                 }
             }
         },
         {
             "condition": "[not(equals(parameters('moodleCommon').httpsTermination, 'AppGw'))]",
-            "apiVersion": "2020-07-01",
+            "apiVersion": "2019-11-01",
             "type": "Microsoft.Network/loadBalancers",
             "location": "[parameters('moodleCommon').location]",
             "name": "[parameters('moodleCommon').lbName]",
@@ -96,6 +96,11 @@
             ],
             "tags": {},
             "properties": {
+                "backendAddressPools": [
+                    {
+                        "name": "[parameters('moodleCommon').extBeName ]"
+                    }
+                ],
                 "frontendIPConfigurations": [
                     {
                         "name": "[parameters('moodleCommon').extFeName ]",
