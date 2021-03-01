@@ -102,7 +102,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Static",
                             "subnet": {
-                                "id": "[variables('subnetIdWeb')]"
+                                "id": "[if(equals(parameters('moodleCommon').customVnetId, ''), resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), parameters('moodleCommon').subnetWeb), variables('customVnetSubnetIdWeb'))]"
                             },
                             "privateIPAddress": "172.19.129.5",
                             "privateIPAddressVersion": "IPv4"
