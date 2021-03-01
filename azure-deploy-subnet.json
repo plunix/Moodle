@@ -699,7 +699,7 @@
                     }
                 },
                 "templateLink": {
-                    "uri": "[concat(variables('moodleCommon').baseTemplateUrl,'network.json',parameters('_artifactsLocationSasToken'))]"
+                    "uri": "[concat(variables('moodleCommon').baseTemplateUrl,'network-private.json',parameters('_artifactsLocationSasToken'))]"
                 }
             }
         },
