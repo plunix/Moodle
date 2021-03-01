@@ -81,7 +81,7 @@
             }
         },
         {
-            "condition": "[equals(parameters('moodleCommon').httpsTermination, 'pLB')]",
+            "condition": "[not(equals(parameters('moodleCommon').httpsTermination, 'AppGw'))]",
             "apiVersion": "2020-07-01",
             "type": "Microsoft.Network/loadBalancers",
             "location": "[parameters('moodleCommon').location]",
