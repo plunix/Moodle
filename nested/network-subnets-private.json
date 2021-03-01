@@ -64,7 +64,7 @@
         {
         "type": "Microsoft.Network/privateDnsZones",
         "apiVersion": "2018-09-01",
-        "name": "[variables('privateDnsZonesName')]",
+        "name": "[parameters('moodleCommon').privateDnsZones]",
         "location": "global",
         "properties": {
             "maxNumberOfRecordSets": 25000,
@@ -94,8 +94,7 @@
         "documentation01": "This sub-template creates various subnets needed for various components of the cluster.",
         "documentation02": "This needs to be done on a separate nested template, in order to allow to create subnets on a customer's BYO-vnet, which may be on a different subscription and/or on a different resource group.",
         "documentation03": "The subnets are created one-by-one (using the dependsOn's), to avoid ARM's 'Another operation on this or dependent resource is in progress' failures",
-        "privateDnsZonesName": "[concat(parameters('vnetName'), '.', parameters('moodleCommon').privateDnsZones)]",
-        "privateDnsZoneResourceId": "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZonesName'))]",
+        "privateDnsZoneResourceId": "[resourceId('Microsoft.Network/privateDnsZones', parameters('moodleCommon').privateDnsZones)]",
         "vnetId" : "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
     }
 }
