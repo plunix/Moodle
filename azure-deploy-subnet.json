@@ -732,6 +732,9 @@
                     "moodleCommon": {
                         "value": "[variables('moodleCommon')]"
                     },
+                    "lbPrivateIp": {
+                        "value": ""
+                    },
                     "lbPubIp": {
                         "value": ""
                     },
