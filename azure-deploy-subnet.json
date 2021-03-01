@@ -720,6 +720,25 @@
             }
         },
         {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/networkTemplate"
+            ],
+            "name": "dbTemplate",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "moodleCommon": {
+                        "value": "[variables('moodleCommon')]"
+                    }
+                },
+                "templateLink": {
+                    "uri": "[concat(variables('moodleCommon').baseTemplateUrl, 'db-', parameters('dbServerType'), '-private.json', parameters('_artifactsLocationSasToken'))]"
+                }
+            }
+        },
+        {
             "condition": "[parameters('azureBackupSwitch')]",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2017-05-10",
