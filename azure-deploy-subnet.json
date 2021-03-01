@@ -657,6 +657,13 @@
             },
             "type": "string"
         },
+        "loadBalancerPrivateIp": {
+            "defaultValue": "172.19.129.5",
+            "metadata": {
+                "description": "Loadbalancer Static Private IP"
+            },
+            "type": "string"
+        },
         "ubuntuVersion": {
             "type": "string",
             "allowedValues": [
@@ -1166,6 +1173,7 @@
             "lbOutName001": "[concat('lb-out001-',variables('resourceprefix'))]",
             "lbOutName002": "[concat('lb-out002-',variables('resourceprefix'))]",
             "lbPipName": "[concat('lb-pubip-',variables('resourceprefix'))]",
+            "lbPrivateIP": "[parameters('loadBalancerPrivateIp')]",
             "lbOutPipName001": "[concat('lb-outpubip001-',variables('resourceprefix'))]",
             "lbOutPipName002": "[concat('lb-outpubip002-',variables('resourceprefix'))]",
             "location": "[parameters('location')]",

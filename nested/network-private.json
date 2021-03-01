@@ -92,7 +92,8 @@
             },
             "dependsOn": [
                 "Microsoft.Resources/deployments/vnetTemplate",
-                "Microsoft.Resources/deployments/ddosTemplate"
+                "Microsoft.Resources/deployments/ddosTemplate",
+                "Microsoft.Resources/deployments/subnetTemplate"
             ],
             "tags": {},
             "properties": {
@@ -109,7 +110,7 @@
                             "subnet": {
                                 "id": "[variables('subnetIdWeb')]"
                             },
-                            "privateIPAddress": "172.19.129.5",
+                            "privateIPAddress": "[parameters('moodleCommon').lbPrivateIP ]",
                             "privateIPAddressVersion": "IPv4"
                         }
                     }
