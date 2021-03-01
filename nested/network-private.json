@@ -90,7 +90,10 @@
                 "name": "[parameters('moodleCommon').lbSku]",
                 "tier": "[parameters('moodleCommon').lbTier]"
             },
-            "dependsOn": [],
+            "dependsOn": [
+                "Microsoft.Resources/deployments/vnetTemplate",
+                "Microsoft.Resources/deployments/ddosTemplate"
+            ],
             "tags": {},
             "properties": {
                 "frontendIPConfigurations": [
@@ -99,7 +102,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Static",
                             "subnet": {
-                                "id": "[if(equals(parameters('moodleCommon').customVnetId, ''), parameters('moodleCommon').vnetName, variables('customVnetIdArr')[8])]"
+                                "id": "[variables('subnetIdWeb')]"
                             },
                             "privateIPAddress": "172.19.129.5",
                             "privateIPAddressVersion": "IPv4"
