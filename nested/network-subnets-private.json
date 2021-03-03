@@ -22,7 +22,8 @@
             "name": "[concat(parameters('vnetName'), '/', parameters('moodleCommon').subnetWeb)]",
             "location": "[parameters('moodleCommon').location]",
             "properties": {
-                "addressPrefix": "[parameters('moodleCommon').subnetWebRange]"
+                "addressPrefix": "[parameters('moodleCommon').subnetWebRange]",
+               "privateEndpointNetworkPolicies": "Disabled" 
             }
         },
         {
@@ -34,7 +35,8 @@
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('moodleCommon').subnetWeb)]"
             ],
             "properties": {
-                "addressPrefix": "[parameters('moodleCommon').subnetRedisRange]"
+                "addressPrefix": "[parameters('moodleCommon').subnetRedisRange]",
+                "privateEndpointNetworkPolicies": "Disabled" 
             }
         },
         {
@@ -46,7 +48,8 @@
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('moodleCommon').subnetRedis)]"
             ],
             "properties": {
-                "addressPrefix": "[parameters('moodleCommon').subnetPrivateEndPointRange]"
+                "addressPrefix": "[parameters('moodleCommon').subnetPrivateEndPointRange]",
+                "privateEndpointNetworkPolicies": "Disabled"
             }
         },
         {
@@ -70,13 +73,12 @@
                 "[variables('privateDnsZoneResourceId')]"
             ],
             "properties": {
-                "registrationEnabled": true,
+                "registrationEnabled": false,
                 "virtualNetwork": {
                     "id": "[variables('vnetId')]"
                 }
             }
-        }
-        
+        }        
     ],
     "variables": {
         "documentation01": "This sub-template creates various subnets needed for various components of the cluster.",

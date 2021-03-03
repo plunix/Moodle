@@ -7,7 +7,7 @@
             "metadata": {
                 "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
             },
-            "defaultValue": "https://raw.githubusercontent.com/plunix/Moodle/master/"
+            "defaultValue": "https://moodlescripts.blob.core.windows.net/scripts/Moodle/"
         },
         "_artifactsLocationSasToken": {
             "type": "securestring",
@@ -272,6 +272,20 @@
             "defaultValue": "5.7",
             "metadata": {
                 "description": "Mysql version"
+            },
+            "type": "string"
+        },
+        "mysqlPrivateEndpoint": {
+            "defaultValue": "private-mysql",
+            "metadata": {
+                "description": "Mysql Private Endpoint"
+            },
+            "type": "string"
+        },
+        "mysqlPrivateEndpointIP": {
+            "defaultValue": "172.19.129.52",
+            "metadata": {
+                "description": "MySQL Private IP"
             },
             "type": "string"
         },
@@ -738,6 +752,9 @@
                 "parameters": {
                     "moodleCommon": {
                         "value": "[variables('moodleCommon')]"
+                    },
+                    "subnetIdPrivateEndpoint": {
+                        "value": "[reference('networkTemplate').outputs.subnetIdPrivateEndpoint.value]"
                     }
                 },
                 "templateLink": {
@@ -1195,6 +1212,8 @@
             "mysqlPgresStgSizeGB": "[parameters('mysqlPgresStgSizeGB')]",
             "mysqlPgresVcores": "[parameters('mysqlPgresVcores')]",
             "mysqlVersion": "[parameters('mysqlVersion')]",
+            "mysqlPrivateEndpoint": "[concat(parameters('mysqlPrivateEndpoint'),'-',variables('resourceprefix'))]",
+            "mysqlPrivateEndpointIP": "[parameters('mysqlPrivateEndpointIP')]",
             "nfsByoIpExportPath": "[parameters('nfsByoIpExportPath')]",
             "nfsHaClientsIPRange": "[variables('subnetWebRange')]",
             "nfsHaExportPath": "/drbd/data",
