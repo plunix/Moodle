@@ -176,6 +176,10 @@
         "subnetIdPrivateEndpoint": {
             "value": "[variables('subnetIdPrivateEndpoint')]",
             "type": "string"
+        },
+        "vNetName": {
+            "value": "[variables('vnetName')]",
+            "type": "string"
         }
     }
 }

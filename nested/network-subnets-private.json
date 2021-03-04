@@ -51,40 +51,12 @@
                 "addressPrefix": "[parameters('moodleCommon').subnetPrivateEndPointRange]",
                 "privateEndpointNetworkPolicies": "Disabled"
             }
-        },
-        {
-        "type": "Microsoft.Network/privateDnsZones",
-        "apiVersion": "2018-09-01",
-        "name": "[parameters('moodleCommon').privateDnsZones]",
-        "location": "global",
-        "properties": {
-            "maxNumberOfRecordSets": 25000,
-            "maxNumberOfVirtualNetworkLinks": 1000,
-            "maxNumberOfVirtualNetworkLinksWithRegistration": 100
-            }
-        },
-        {
-            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
-            "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('moodleCommon').privateDnsZones, '/link_to_', toLower(parameters('vnetName')))]",
-            "location": "global",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('moodleCommon').subnetPrivateEndpoint)]",
-                "[variables('privateDnsZoneResourceId')]"
-            ],
-            "properties": {
-                "registrationEnabled": false,
-                "virtualNetwork": {
-                    "id": "[variables('vnetId')]"
-                }
-            }
-        }        
+        }      
     ],
     "variables": {
         "documentation01": "This sub-template creates various subnets needed for various components of the cluster.",
         "documentation02": "This needs to be done on a separate nested template, in order to allow to create subnets on a customer's BYO-vnet, which may be on a different subscription and/or on a different resource group.",
         "documentation03": "The subnets are created one-by-one (using the dependsOn's), to avoid ARM's 'Another operation on this or dependent resource is in progress' failures",
-        "privateDnsZoneResourceId": "[resourceId('Microsoft.Network/privateDnsZones', parameters('moodleCommon').privateDnsZones)]",
         "vnetId" : "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
     }
 }
