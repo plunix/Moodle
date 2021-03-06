@@ -10,7 +10,13 @@
         },
         "subnetIdPrivateEndpoint": {
             "metadata": {
-                "description": "Common Moodle values"
+                "description": "Subnet privateendpoint"
+            },
+            "type": "string"
+        },
+        "subnetIdWeb": {
+            "metadata": {
+                "description": "Subnet web vmss"
             },
             "type": "string"
         },
@@ -28,7 +34,7 @@
             "apiVersion": "2019-06-01",
             "location": "[parameters('moodleCommon').location]",
             "name": "[concat(parameters('moodleCommon').storageAccountName)]",
-            "kind": "StorageV2",
+            "kind": "[if(equals(parameters('moodleCommon').storageAccountType, 'Premium_LRS'), 'FileStorage', 'StorageV2')]",
             "sku": {
                 "name": "[parameters('moodleCommon').storageAccountType]"
             },
@@ -77,7 +83,7 @@
                     }
                 ],
                 "subnet": {
-                    "id": "[parameters('subnetIdPrivateEndpoint')]"
+                    "id": "[parameters('subnetIdWeb')]"
                 },
                 "customDnsConfigs": [
                    
@@ -96,25 +102,6 @@
             }
         },
         {
-            "type": "Microsoft.Network/privateDnsZones/A",
-            "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('moodleCommon').storageAccountPrivateFileDnsZoneName, '/', parameters('moodleCommon').storageAccountName)]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('moodleCommon').storageAccountPrivateFileDnsZoneName)]"
-            ],
-            "properties": {
-                "metadata": {
-                    "creator": "created by private endpoint storageaccount.privatelink with resource guid 62b6a6f2-597d-4b20-ab55-02c66fe6c8a3"
-                },
-                "ttl": 10,
-                "aRecords": [
-                    {
-                        "ipv4Address": "[parameters('moodleCommon').storageAccountPrivateIP]"
-                    }
-                ]
-            }
-        },
-        {
             "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
             "apiVersion": "2018-09-01",
             "name": "[concat(parameters('moodleCommon').storageAccountPrivateFileDnsZoneName, '/', parameters('vNetName'))]",
@@ -127,6 +114,26 @@
                 "virtualNetwork": {
                     "id": "[variables('vnetId')]"
                 }
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+            "apiVersion": "2020-05-01",
+            "name": "[concat(parameters('moodleCommon').storageAccountPrivateEndpointName, '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateEndpoints', parameters('moodleCommon').storageAccountPrivateEndpointName)]",
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('moodleCommon').storageAccountPrivateFileDnsZoneName)]",
+
+            ],
+            "properties": {
+                "privateDnsZoneConfigs": [
+                    {
+                        "name": "privatelink-file-core-windows-net",
+                        "properties": {
+                            "privateDnsZoneId": "[resourceId('Microsoft.Network/privateDnsZones', parameters('moodleCommon').storageAccountPrivateFileDnsZoneName)]"
+                        }
+                    }
+                ]
             }
         }
     ],

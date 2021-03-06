@@ -61,14 +61,12 @@
                 "storageAccountType": "[parameters('moodleCommon').storageAccountType]",
                 "redisDns": "[parameters('moodleCommon').redisDns]",
                 "redisKey": "[parameters('redisKey')]",
-                "elasticVm1IP": "[parameters('moodleCommon').elasticVm1IP]",
                 "installO365pluginsSwitch": "[parameters('moodleCommon').installO365pluginsSwitch]",
                 "installObjectFsSwitch": "[parameters('moodleCommon').installObjectFsSwitch]",
                 "installGdprPluginsSwitch": "[parameters('moodleCommon').installGdprPluginsSwitch]",
                 "searchType": "[parameters('moodleCommon').searchType]",
                 "azureSearchKey": "[parameters('azureSearchKey')]",
                 "azureSearchNameHost": "[parameters('moodleCommon').azureSearchNameHost]",
-                "tikaVmIP": "[parameters('moodleCommon').tikaVmIP]",
                 "syslogServer": "[parameters('moodleCommon').ctlrVmName]",
                 "webServerType": "[parameters('moodleCommon').webServerType]",
                 "htmlLocalCopySwitch": "[parameters('moodleCommon').htmlLocalCopySwitch]"
@@ -78,10 +76,7 @@
                 "fqdn": "[parameters('dbFQDN')]",
                 "adminLogin": "[parameters('moodleCommon').dbLogin]",
                 "adminLoginAzure": "[concat(parameters('moodleCommon').dbLogin, '@', parameters('moodleCommon').dbServerType, '-', parameters('moodleCommon').resourcesPrefix)]",
-                "adminPassword": "[parameters('moodleCommon').dbLoginPassword]",
-                "mssqlDbServiceObjectiveName": "[parameters('moodleCommon').mssqlDbServiceObjectiveName]",
-                "mssqlDbEdition": "[parameters('moodleCommon').mssqlDbEdition]",
-                "mssqlDbSize": "[parameters('moodleCommon').mssqlDbSize]"
+                "adminPassword": "[parameters('moodleCommon').dbLoginPassword]"
             },
             "fileServerProfile": {
                 "type": "[parameters('moodleCommon').fileServerType]",
