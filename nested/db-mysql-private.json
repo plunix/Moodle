@@ -154,7 +154,7 @@
         "documentationA": " mysqlPgresSkuHwFamily       - Mysql sku hardware family",
         "mysqlserverResourceID": "[resourceId('Microsoft.DBforMySQL/servers', parameters('moodleCommon').serverName)]",
         "privateEndpointsId": "[resourceId('Microsoft.Network/privateEndpoints', parameters('moodleCommon').mysqlPrivateEndpointName)]",
-        "vnetId" : "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNetName'))]"
+        "vnetId" : "[if(equals(parameters('moodleCommon').customVnetId, ''), resourceId('Microsoft.Network/virtualNetworks', parameters('vNetName')), parameters('moodleCommon').customVnetId)]"
 
     }
 }

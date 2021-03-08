@@ -75,7 +75,7 @@
                 "type": "[parameters('moodleCommon').dbServerType]",
                 "fqdn": "[parameters('dbFQDN')]",
                 "adminLogin": "[parameters('moodleCommon').dbLogin]",
-                "adminLoginAzure": "[concat(parameters('moodleCommon').dbLogin, '@', parameters('moodleCommon').dbServerType, '-', parameters('moodleCommon').resourcesPrefix)]",
+                "adminLoginAzure": "[concat(parameters('moodleCommon').dbLogin, '@', parameters('moodleCommon').serverName)]",
                 "adminPassword": "[parameters('moodleCommon').dbLoginPassword]"
             },
             "fileServerProfile": {
