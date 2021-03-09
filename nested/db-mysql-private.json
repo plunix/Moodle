@@ -134,10 +134,6 @@
         "dbFQDN": {
             "type": "string",
             "value": "[reference(parameters('moodleCommon').serverName).fullyQualifiedDomainName]"
-        },
-        "dbFQDNPrivate": {
-            "type": "string",
-            "value": "[reference(parameters('moodleCommon').serverName).fullyQualifiedDomainName]"
         }
     },
     "variables": {
