@@ -766,7 +766,7 @@
                         "value": "[variables('moodleCommon')]"
                     },
                     "dbFQDN": {
-                        "value": "[reference('dbTemplate').outputs.dbFQDNPrivate.value]"
+                        "value": "[reference('dbTemplate').outputs.dbFQDN.value]"
                     },
                     "storageAccountName": {
                         "value": "[reference('storageAccountTemplate').outputs.storageAccountName.value]"
@@ -930,7 +930,7 @@
             "azureSearchSku": "[parameters('azureSearchSku')]",
             "commonFunctionsScriptUri": "[concat(parameters('_artifactsLocation'),'scripts/helper_functions.sh',parameters('_artifactsLocationSasToken'))]",
             "controllerVmSku": "[parameters('controllerVmSku')]",
-            "controllerosDiskVhdName": "[concat('moodl', parameters('environnmentName'), 'wevml01-osdisks')]",
+            "controllerosDiskVhdName": "[concat('moodl', parameters('environnmentName'), 'wevml01-osdisk')]",
             "customVnetId": "[parameters('customVnetId')]",
             "ctlrNicName": "[concat('moodl', parameters('environnmentName'), 'wevml01-nic')]",
             "ctlrNsgName": "[concat('moodl', parameters('environnmentName'), 'wevml01-nsg')]",
@@ -946,8 +946,8 @@
             "elasticScriptFilename": "install_elastic.sh",
             "enableAccelNwForCtlrVmSwitch": "[parameters('enableAccelNwForCtlrVmSwitch')]",
             "enableAccelNwForOtherVmsSwitch": "[parameters('enableAccelNwForOtherVmsSwitch')]",
-            "extBeName": "[concat('moodl-', parameters('environnmentName'),'-we-lb-backend')]",
-            "extFeName": "[concat('moodl-', parameters('environnmentName'),'-we-lb-frontend')]",
+            "extBeName": "[concat('moodl-', parameters('environnmentName'),'-we-ilb-backend')]",
+            "extFeName": "[concat('moodl-', parameters('environnmentName'),'-we-ilb-frontend')]",
             "extOutName001": "[concat('lb-outbound001-',variables('resourceprefix'))]",
             "extOutName002": "[concat('lb-outbound002-',variables('resourceprefix'))]",
             "extNatPool": "[concat('lb-natpool-',variables('resourceprefix'))]",
@@ -1004,8 +1004,8 @@
             "nfsHaNode0IP": "[concat(variables('subnetSanPrefix'), '.110')]",
             "nfsHaNode1IP": "[concat(variables('subnetSanPrefix'), '.120')]",
             "osDiskStorageType": "[parameters('osDiskStorageType')]",
-            "osDiskVhdName": "[concat('moodl-',parameters('environnmentName'), '-we-vmss-osdisks')]",
-            "osDiskName": "[concat('moodl-', parameters('environnmentName'), '-we-vmss-osdisks')]",
+            "osDiskVhdName": "[concat('moodl-',parameters('environnmentName'), '-we-vmss-osdisk')]",
+            "osDiskName": "[concat('moodl-', parameters('environnmentName'), '-we-vmss-osdisk')]",
             "osDiskVhdimageReference": "[concat('moodl-', parameters('environnmentName'), '-we-vmss-customimage')]",
             "osDiskVhdimageControllerReference": "[concat('moodl-', parameters('environnmentName'), '-we-controller-customimage')]",
             "osType": {

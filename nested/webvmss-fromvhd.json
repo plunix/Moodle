@@ -25,10 +25,6 @@
         {
             "type": "Microsoft.Compute/virtualMachineScaleSets",
             "apiVersion": "2019-07-01",
-            "dependsOn": [
-                "[concat('Microsoft.Storage/storageAccounts/', parameters('moodleCommon').vmssdStorageAccounttName)]",
-                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('moodleCommon').vmssNsgName)]"
-            ],
             "location": "[parameters('moodleCommon').location]",
             "name": "[parameters('moodleCommon').vmssName]",
             "properties": {
@@ -77,10 +73,7 @@
                                         }
                                     ],
                                     "primary": true,
-                                    "enableAcceleratedNetworking": "[parameters('moodleCommon').enableAccelNwForOtherVmsSwitch]",
-                                    "networkSecurityGroup": {
-                                        "id": "[ variables('vmssNsgNameId') ]"
-                                    }
+                                    "enableAcceleratedNetworking": "[parameters('moodleCommon').enableAccelNwForOtherVmsSwitch]"                                    
                                 }
                             }
                         ]
@@ -192,17 +185,14 @@
     ],
     "variables": {
         "singleQuote": "'",
-        "dstorID": "[resourceId('Microsoft.Storage/storageAccounts',parameters('moodleCommon').vmssdStorageAccounttName)]",
         "extBeID": "[concat(variables('extLbID'),'/backendAddressPools/',parameters('moodleCommon').extBeName)]",
         "extFeID": "[concat(variables('extLbID'),'/frontendIPConfigurations/',parameters('moodleCommon').extFeName)]",
         "extLbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('moodleCommon').lbName)]",
-        "pipID": "[resourceId('Microsoft.Network/publicIPAddresses',parameters('moodleCommon').lbPipName)]",
         "scriptUri": "[concat(parameters('moodleCommon').scriptLocation,parameters('moodleCommon').webServerSetupScriptFilename,parameters('moodleCommon').artifactsSasToken)]",
         "vmssID": "[resourceId('Microsoft.Compute/virtualMachineScaleSets',parameters('moodleCommon').vmssName)]",
         "webvmss1NIC": "[concat('Microsoft.Compute/virtualMachineScaleSets/', parameters('moodleCommon').vmssName, '/virtualMachines/0/networkInterfaces/',parameters('moodleCommon').vmssNicName)]",
         "appGwID": "[resourceId('Microsoft.Network/applicationGateways', parameters('moodleCommon').appGwName)]",
         "appGwBePoolId": "[concat(variables('appGwID'), '/backendAddressPools/', parameters('moodleCommon').appGwBePoolName)]",
-        "vmssNsgNameId": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('moodleCommon').vmssNsgName)]",
         "vhddisks": "[resourceId('Microsoft.Compute/disks', parameters('moodleCommon').osDiskVhdName)]",
         "lbBePoolArray": [
             {

@@ -40,11 +40,13 @@
             },
             "properties": {
                 "largeFileSharesState": "Enabled",
+                "minimumTlsVersion": "TLS1_2",
+                "allowBlobPublicAccess": true,
                 "networkAcls": {
                     "bypass": "AzureServices",
                     "virtualNetworkRules": [],
                     "ipRules": [],
-                    "defaultAction": "Allow"
+                    "defaultAction": "Deny"
                 },
                 "supportsHttpsTrafficOnly": true,
                 "encryption": {
@@ -83,7 +85,7 @@
                     }
                 ],
                 "subnet": {
-                    "id": "[parameters('subnetIdWeb')]"
+                    "id": "[parameters('subnetIdPrivateEndpoint')]"
                 },
                 "customDnsConfigs": [
                    

@@ -76,7 +76,7 @@
                     }
                 ],
                 "subnet": {
-                    "id": "[parameters('subnetIdWeb')]"
+                    "id": "[parameters('subnetIdPrivateEndpoint')]"
                 },
                 "customDnsConfigs": [
 
@@ -115,7 +115,7 @@
             "name": "[concat(parameters('moodleCommon').mysqlPrivateEndpointName, '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/privateEndpoints', parameters('moodleCommon').mysqlPrivateEndpointName)]",
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('moodleCommon').mysqlPrivateDnsZoneName)]",
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('moodleCommon').mysqlPrivateDnsZoneName)]"
 
             ],
             "properties": {
