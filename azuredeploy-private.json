@@ -219,7 +219,7 @@
         "environnmentName": {
             "defaultValue": "pr",
              "metadata": {
-                "description": "Prefix name resources"
+                "description": "Nome dell'ambiente di deploy.  Verrà utilizzato come preffisso per il nome delle risorse"
             },
             "type": "string"
         },
